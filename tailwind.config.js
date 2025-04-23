@@ -96,6 +96,9 @@ export default {
           500: "#F26C63",
         },
       },
+      boxShadow: {
+        md: "0 2px 2px rgba(0, 0, 0, 0.25)",
+      },
     },
   },
   plugins: [],
