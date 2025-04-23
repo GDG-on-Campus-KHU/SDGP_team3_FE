@@ -10,7 +10,7 @@ const HeaderVariants = {
 };
 
 const defaultStyle =
-  "relative w-full h-14 text-black flex items-center shadow-none border-none max-w-[600px]";
+  "fixed w-full h-14 text-black flex items-center shadow-none border-none max-w-[600px] bg-background z-bar";
 
 /**
  * 공통 컴포넌트 - Header
@@ -34,27 +34,31 @@ export default function Header({
   const goToMain = () => navigate("/create");
 
   return (
-    <Navbar
-      className={clsx(HeaderVariants[variant], className, defaultStyle)}
-      {...props}
-    >
-      {variant === "main" && (
-        <img
-          src="/icons/prevIcon.svg"
-          alt="로고 아이콘"
-          className=" cursor-pointer"
-          onClick={() => goToMain()}
-        /> // 추후 로고로 변경 예정
-      )}
-      <p className="!text-body-01 text-black">{title}</p>
-      {variant === "create" && (
-        <img
-          className="absolute left-5 cursor-pointer"
-          src="/icons/prevIcon.svg"
-          alt="이전 아이콘"
-          onClick={handleBack}
-        />
-      )}
+    <Navbar className={clsx(className, defaultStyle)} {...props}>
+      <header
+        className={clsx(
+          HeaderVariants[variant],
+          "relative w-full h-full flex items-center"
+        )}
+      >
+        {variant === "main" && (
+          <img
+            src="/icons/prevIcon.svg"
+            alt="로고 아이콘"
+            className=" cursor-pointer"
+            onClick={() => goToMain()}
+          /> // 추후 로고로 변경 예정
+        )}
+        <p className="!text-body-01 text-black">{title}</p>
+        {variant === "create" && (
+          <img
+            className="absolute left-5 cursor-pointer"
+            src="/icons/prevIcon.svg"
+            alt="이전 아이콘"
+            onClick={handleBack}
+          />
+        )}
+      </header>
     </Navbar>
   );
 }
