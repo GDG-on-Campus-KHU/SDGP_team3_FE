@@ -19,7 +19,6 @@ const defaultStyle =
  *    <Btn>시작할래요</Btn> // default button
  *    <Btn variant="cancel">시작할래요</Btn> // cancel button
  *    <Btn disabled>비활성화 테스트</Btn> // disabled button
- * @returns
  */
 export function Btn({ variant = "default", className, disabled, ...props }) {
   return (
