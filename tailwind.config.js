@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -9,6 +10,7 @@ export default {
           {
             lineHeight: "140%",
             letterSpacing: "-0.005em",
+            fontWeight: 700,
           },
         ],
 
@@ -17,6 +19,7 @@ export default {
           {
             lineHeight: "140%",
             letterSpacing: "-0.005em",
+            fontWeight: 700,
           },
         ],
 
@@ -25,6 +28,7 @@ export default {
           {
             lineHeight: "150%",
             letterSpacing: "0em",
+            fontWeight: 600,
           },
         ],
 
@@ -33,6 +37,7 @@ export default {
           {
             lineHeight: "150%",
             letterSpacing: "0em",
+            fontWeight: 600,
           },
         ],
 
@@ -41,6 +46,7 @@ export default {
           {
             lineHeight: "150%",
             letterSpacing: "0em",
+            fontWeight: 500,
           },
         ],
 
@@ -49,6 +55,7 @@ export default {
           {
             lineHeight: "140%",
             letterSpacing: "0.2px",
+            fontWeight: 500,
           },
         ],
 
@@ -57,10 +64,13 @@ export default {
           {
             lineHeight: "140%",
             letterSpacing: "0.2px",
+            fontWeight: 500,
           },
         ],
       },
-
+      fontFamily: {
+        pretendard: ["Pretendard", "sans-serif"], // 직접 폰트 이름을 써야 해!
+      },
       fontWeight: {
         medium: "500",
         semibold: "600",
@@ -78,12 +88,12 @@ export default {
           700: "#787878",
         },
         green: {
-          300: "#A8D881",
-          500: "#7AAD51",
+          300: "#A7E8C2",
+          500: "#32BC81",
         },
         red: {
           300: "#F6A6A6",
-          500: "#F16C6C",
+          500: "#F26C63",
         },
       },
     },
