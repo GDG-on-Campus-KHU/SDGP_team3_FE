@@ -6,7 +6,7 @@ import Main from "./pages/main";
 function App() {
   return (
     <div className="flex h-dvh w-full justify-center">
-      <div className="flex w-full max-w-[600px] flex-col bg-background">
+      <div className="relative flex w-full max-w-[600px] flex-col bg-background">
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/create" element={<p>챌린지 생성 페이지</p>} />
