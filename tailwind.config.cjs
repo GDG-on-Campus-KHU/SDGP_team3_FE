@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 
-export default {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -69,7 +71,7 @@ export default {
         ],
       },
       fontFamily: {
-        pretendard: ["Pretendard", "sans-serif"], // 직접 폰트 이름을 써야 해!
+        pretendard: ["Pretendard", "sans-serif"],
       },
       fontWeight: {
         medium: "500",
@@ -103,8 +105,12 @@ export default {
         bar: 200, // header, footer
         modalBackground: 300,
         modal: 400,
+        toast: 500,
       },
+    },
+    fontFamily: {
+      sans: ["Pretendard", "sans-serif"],
     },
   },
   plugins: [],
-};
+});
