@@ -14,7 +14,7 @@ export default function ProgressBar({ currentValue, maxValue }) {
   const progressPercentage = Math.round((currentValue / maxValue) * 100); // 퍼센트 계산
 
   return (
-    <div className="flex w-full flex-col p-4 gap-1 h-auto">
+    <div className="flex w-full flex-col gap-1 h-auto">
       <p className="self-end text-caption-02 text-gray-700">
         {currentValue}/{maxValue}
       </p>
