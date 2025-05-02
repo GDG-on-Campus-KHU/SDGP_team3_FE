@@ -31,7 +31,7 @@ export default function Header({
 }) {
   const navigate = useNavigate();
   const handleBack = usePageBack();
-  const goToMain = () => navigate("/create");
+  const goToMain = () => navigate("/");
 
   return (
     <Navbar className={clsx(className, defaultStyle)} {...props}>
