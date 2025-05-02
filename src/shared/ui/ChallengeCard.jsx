@@ -4,7 +4,7 @@ import ProgressBar from "./progressBar";
 import { Btn } from "./button";
 import { useLocation } from "react-router-dom";
 
-export default function ChallengeCard({ challenge }) {
+export default function ChallengeCard({ challenge, onStampClick }) {
   const icons = CHALLENGE_ICONS;
 
   const location = useLocation();
@@ -17,9 +17,9 @@ export default function ChallengeCard({ challenge }) {
       </div>
       <div className="w-full flex flex-col">
         <div className="flex w-full justify-between">
-          <p className="text-body-01 text-black">{challenge.title}</p>
+          <p className="text-body-02 w-full text-black">{challenge.title}</p>
           {pathname !== "/create" && (
-            <p className="text-caption-01 text-gray-700 mt-[2px] text-right">
+            <p className="text-caption-01 text-gray-700 mt-[2px] w-full text-right">
               {challenge.started_at} - {challenge.due_at}
             </p>
           )}
@@ -35,7 +35,10 @@ export default function ChallengeCard({ challenge }) {
             {challenge.obj}번의 목표 횟수를 모두 달성했어요!
           </p>
         ) : (
-          <Btn className="self-end mt-3">
+          <Btn
+            className="self-end mt-3"
+            onClick={() => onStampClick(challenge.id)}
+          >
             {challenge.started_at ? "도장 찍기" : "시작하기"}
           </Btn>
         )}
