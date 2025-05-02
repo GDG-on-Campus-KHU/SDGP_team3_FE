@@ -10,7 +10,7 @@ const HeaderVariants = {
 };
 
 const defaultStyle =
-  "fixed w-full h-14 text-black flex items-center shadow-none border-none max-w-[600px] bg-background z-bar";
+  "p-0 fixed w-full h-14 text-black flex items-center shadow-none border-none max-w-[600px] bg-background z-bar rounded-none";
 
 /**
  * 공통 컴포넌트 - Header
