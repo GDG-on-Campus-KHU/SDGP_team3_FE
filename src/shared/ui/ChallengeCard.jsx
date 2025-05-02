@@ -18,41 +18,25 @@ export default function ChallengeCard({ challenge }) {
       <div className="w-full flex flex-col">
         <div className="flex w-full justify-between">
           <p className="text-body-01 text-black">{challenge.title}</p>
-          {/* {challenge.startedAt && challenge.dueDate && (
-            <p className="text-caption-01 text-gray-700 mt-[2px] text-right">
-              {challenge.startedAt} - {challenge.dueDate}
-            </p>
-          )} */}
           {pathname !== "/create" && (
             <p className="text-caption-01 text-gray-700 mt-[2px] text-right">
-              {challenge.startedAt} - {challenge.dueDate}
+              {challenge.started_at} - {challenge.due_at}
             </p>
           )}
         </div>
         <p className="text-caption-01 text-gray-700 mb-[2px]">
           {challenge.description}
         </p>
-        {/* {challenge.achievementProgress && challenge.goalProgress && (
-          <ProgressBar
-            currentValue={challenge.achievementProgress}
-            maxValue={challenge.goalProgress}
-          />
-        )} */}
         {pathname !== "/create" && (
-          <ProgressBar
-            currentValue={challenge.achievementProgress}
-            maxValue={challenge.goalProgress}
-          />
+          <ProgressBar currentValue={challenge.ach} maxValue={challenge.obj} />
         )}
-        {challenge.achievementProgress &&
-        challenge.goalProgress &&
-        challenge.achievementProgress === challenge.goalProgress ? (
+        {challenge.is_done && pathname !== "/create" ? (
           <p className="mt-3 text-caption-02 text-gray-700">
-            {challenge.goalProgress}번의 목표 횟수를 모두 달성했어요!
+            {challenge.obj}번의 목표 횟수를 모두 달성했어요!
           </p>
         ) : (
           <Btn className="self-end mt-3">
-            {challenge.startedAt ? "도장 찍기" : "시작하기"}
+            {challenge.started_at ? "도장 찍기" : "시작하기"}
           </Btn>
         )}
       </div>
