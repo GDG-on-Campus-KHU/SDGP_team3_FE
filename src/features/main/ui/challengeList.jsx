@@ -10,13 +10,11 @@ export default function ChallengeList({
 }) {
   return (
     <>
-      {list.map((challenge, index) => {
-        return (
-          <TabsContent className="pb-1" key={challenge.id} value={currentTab}>
-            <ChallengeCard challenge={challenge} onStampClick={onStampClick} />
-          </TabsContent>
-        );
-      })}
+      {list.map((challenge) => (
+        <TabsContent className="pb-1" key={challenge.id} value={currentTab}>
+          <ChallengeCard challenge={challenge} onStampClick={onStampClick} />
+        </TabsContent>
+      ))}
     </>
   );
 }

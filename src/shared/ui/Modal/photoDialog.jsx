@@ -11,18 +11,18 @@ import { Btn } from "../button";
 import { cn } from "@/shared/lib/utils";
 
 export default function PhotoDialog({
+  isOpen,
+  onOpenChange,
+  onChange,
   title,
   description,
   cancelText,
   activeText,
   previewImage,
   setPreviewImage,
-  onChange,
-  open,
-  onOpenChange,
 }) {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={isOpen ?? false} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>

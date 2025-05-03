@@ -9,6 +9,7 @@ export function usePhotoModal() {
   const open = (id) => {
     setChallengeId(id);
     setIsOpen(true);
+    console.log(isOpen);
   };
 
   const close = () => {
@@ -30,6 +31,7 @@ export function usePhotoModal() {
     open,
     close,
     challengeId,
+    setChallengeId,
     previewImage,
     setPreviewImage,
     handleChange,

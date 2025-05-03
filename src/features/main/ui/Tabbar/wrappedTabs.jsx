@@ -7,11 +7,16 @@ import {
 } from "@/shared/config/challengeConfig";
 import ChallengeList from "../challengeList";
 
-export default function WrappedTabs() {
+export default function WrappedTabs({ open, setChallengeId, setPreviewImage }) {
   const [challengeData, setChallengeData] = useState(CHALLENGE_MOCK_DATAS_1);
   const challengeIcon = CHALLENGE_ICONS;
-
   const [currentTab, setCurrentTab] = useState("진행 중인 챌린지");
+
+  const handleStampClick = (id) => {
+    setChallengeId(id);
+    setPreviewImage(null);
+    open();
+  };
 
   return (
     <Tabs className="h-dvh max-w-[600px]" defaultValue="진행 중인 챌린지">
@@ -40,11 +45,10 @@ export default function WrappedTabs() {
           <ChallengeList
             list={challengeData}
             icons={challengeIcon}
-            onStampClick={open}
+            onStampClick={handleStampClick}
             currentTab={currentTab}
           />
         </div>
-        <div className="flex flex-col justify-center gap-4 w-full"></div>
       </div>
     </Tabs>
   );
