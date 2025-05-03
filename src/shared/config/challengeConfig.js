@@ -20,32 +20,6 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 7,
   },
   {
-    id: 4,
-    is_done: false,
-    type: "spoon",
-    title: "일회용 수저 받지 않기",
-    description: "배달 어플 이용 시, ‘일회용 수저 안 받기'에 체크해요",
-    started_at: "2025.03.04",
-    due_at: "2025.03.11",
-    ach: 2,
-    obj: 10,
-  },
-  {
-    id: 6,
-    is_done: false,
-    type: "spoon",
-    title: "일회용 수저 받지 않기",
-    description: "배달 어플 이용 시, ‘일회용 수저 안 받기'에 체크해요",
-    started_at: "2025.03.04",
-    due_at: "2025.03.11",
-    ach: 2,
-    obj: 10,
-  },
-];
-
-export const CHALLENGE_MOCK_DATAS_2 = [
-  // 완료한 챌린지 리스트
-  {
     id: 2,
     is_done: true,
     type: "transportation",
@@ -67,7 +41,17 @@ export const CHALLENGE_MOCK_DATAS_2 = [
     ach: 6,
     obj: 10,
   },
-
+  {
+    id: 4,
+    is_done: false,
+    type: "spoon",
+    title: "일회용 수저 받지 않기",
+    description: "배달 어플 이용 시, ‘일회용 수저 안 받기'에 체크해요",
+    started_at: "2025.03.04",
+    due_at: "2025.03.11",
+    ach: 2,
+    obj: 10,
+  },
   {
     id: 5,
     is_done: true,
@@ -77,6 +61,17 @@ export const CHALLENGE_MOCK_DATAS_2 = [
     started_at: "2025.03.04",
     due_at: "2025.03.11",
     ach: 6,
+    obj: 10,
+  },
+  {
+    id: 6,
+    is_done: false,
+    type: "spoon",
+    title: "일회용 수저 받지 않기",
+    description: "배달 어플 이용 시, ‘일회용 수저 안 받기'에 체크해요",
+    started_at: "2025.03.04",
+    due_at: "2025.03.11",
+    ach: 2,
     obj: 10,
   },
   {

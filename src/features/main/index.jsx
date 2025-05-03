@@ -5,6 +5,8 @@ import { CHALLENGE_MOCK_DATAS_1 } from "../../shared/config/challengeConfig.js";
 import { usePhotoModal } from "./model/usePhotoModal";
 import PhotoDialog from "@/shared/ui/Modal/photoDialog";
 import WrappedTabs from "./ui/Tabbar/wrappedTabs";
+import { useEffect } from "react";
+import { useChallengesStore } from "./model/store/useChallengesStore";
 
 export default function Main() {
   const {
@@ -16,6 +18,13 @@ export default function Main() {
     setPreviewImage,
     handleChange,
   } = usePhotoModal();
+
+  const { fetchChallenges } = useChallengesStore();
+
+  // Todo : 서버 연결 시 주석 해제
+  // useEffect(() => {
+  //   fetchChallenges();
+  // }, []);
 
   return (
     <>
