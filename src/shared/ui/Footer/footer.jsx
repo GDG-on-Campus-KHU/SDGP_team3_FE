@@ -11,7 +11,7 @@ export default function Tabbar() {
   const goToMain = () => navigate("/");
   const goToCreate = () => navigate("/create");
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] z-bar">
+    <div className="fixed -bottom-1 left-1/2 -translate-x-1/2 w-full max-w-[600px] z-bar">
       {/* 비율 유지용 래퍼 */}
       <div className="relative w-full aspect-[401/59]">
         <FooterBackground />

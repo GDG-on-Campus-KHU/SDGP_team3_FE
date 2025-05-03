@@ -7,7 +7,7 @@ const buttonVariants = {
 };
 
 const defaultStyle =
-  "flex justify-center items-center py-[10px] px-11 rounded-lg w-fit !text-body-02 shadow-md";
+  "flex justify-center items-center py-[10px] h-fit rounded-lg  !text-body-02 shadow-md";
 
 /**
  * 공통 컴포넌트 - Button
