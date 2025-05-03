@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -21,6 +21,11 @@ export default function PhotoDialog({
   previewImage,
   setPreviewImage,
 }) {
+  const inputRef = useRef(null);
+
+  const handleTriggerFileUpload = () => {
+    inputRef.current?.click(); // input 클릭 트리거
+  };
   return (
     <Dialog open={isOpen ?? false} onOpenChange={onOpenChange}>
       <DialogContent>
@@ -51,6 +56,7 @@ export default function PhotoDialog({
             <input
               type="file"
               id="photo-upload"
+              ref={inputRef}
               className="hidden"
               onChange={onChange}
             />
@@ -71,7 +77,9 @@ export default function PhotoDialog({
               {activeText && <Btn className="w-full">{activeText}</Btn>}
             </>
           ) : (
-            <Btn className="w-full">{activeText}</Btn>
+            <Btn className="w-full" onClick={handleTriggerFileUpload}>
+              {activeText}
+            </Btn>
           )}
         </DialogFooter>
       </DialogContent>
