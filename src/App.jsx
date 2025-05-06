@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import MainPage from "./pages/main";
 import ChallengeCard from "./shared/ui/ChallengeCard";
 import { CHALLENGE_MOCK_DATAS_1 } from "./shared/config/challengeConfig";
+import WorldPage from "./pages/world";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
             path="/create"
             element={<ChallengeCard challenge={CHALLENGE_MOCK_DATAS_1[2]} />}
           />
-          <Route path="/world" element={<></>} />
+          <Route path="/world" element={<WorldPage />} />
         </Routes>
       </div>
     </div>

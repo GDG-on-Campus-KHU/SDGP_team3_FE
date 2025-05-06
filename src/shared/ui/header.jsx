@@ -43,9 +43,9 @@ export default function Header({
       >
         {variant === "main" && (
           <img
-            src="/icons/prevIcon.svg"
+            src="/icons/logo/logo-en.svg"
             alt="로고 아이콘"
-            className=" cursor-pointer"
+            className="h-36 w-auto cursor-pointer"
             onClick={() => goToMain()}
           /> // 추후 로고로 변경 예정
         )}
