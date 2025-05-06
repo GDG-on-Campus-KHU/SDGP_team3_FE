@@ -27,7 +27,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     description: "자가용 대신 버스나 지하철을 이용해요",
     started_at: "2025.03.04",
     due_at: "2025.03.11",
-    ach: 2,
+    ach: 8,
     obj: 8,
   },
   {
@@ -38,7 +38,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     description: "일회용 봉투 대신 장바구니를 사용해요",
     started_at: "2025.03.04",
     due_at: "2025.03.11",
-    ach: 6,
+    ach: 10,
     obj: 10,
   },
   {
@@ -60,7 +60,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     description: "조깅을 하며 길거리의 쓰레기를 주워요",
     started_at: "2025.03.04",
     due_at: "2025.03.11",
-    ach: 6,
+    ach: 10,
     obj: 10,
   },
   {
@@ -103,7 +103,21 @@ export const CREATE_CHALLENGE_MOCK_DATAS = [
     description: "일회용 봉투 대신 장바구니를 사용해요",
   },
   {
+    id: 12,
+    is_done: true,
+    type: "plogging",
+    title: "줍깅 참여하기",
+    description: "조깅을 하며 길거리의 쓰레기를 주워요",
+  },
+  {
     id: 13,
+    is_done: true,
+    type: "plogging",
+    title: "줍깅 참여하기",
+    description: "조깅을 하며 길거리의 쓰레기를 주워요",
+  },
+  {
+    id: 14,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
