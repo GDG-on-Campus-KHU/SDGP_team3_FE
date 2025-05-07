@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const PostCard = () => {
   // 테스트를 위한 더미 데이터
@@ -56,34 +57,53 @@ const PostCard = () => {
 
   return (
     <div className="flex justify-center px-4 py-8">
-      <div className="w-full max-w-md h-[600px] bg-white shadow-xl rounded-3xl p-6 border border-gray-300 flex flex-col">
-        <div className="w-full h-[450px] bg-white border border-gray-300 overflow-hidden relative">
-          {equippedAssets.map((decoration, index) => {
-            const assetPath = `/decorations/${decoration.type}/${decoration.name}.svg`;
-            const style = {
-              position: "absolute",
-              objectFit: "contain",
-              ...getStyle(decoration.type, decoration.name),
-            };
+      <motion.div
+        className="w-full max-w-md h-[600px] flex flex-col"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="w-full max-w-md h-[600px] bg-white shadow-xl rounded-3xl p-6 border border-gray-300 flex flex-col">
+          <div className="w-full h-[450px] bg-white border border-gray-300 overflow-hidden relative">
+            {equippedAssets.map((decoration, index) => {
+              const assetPath = `/decorations/${decoration.type}/${decoration.name}.svg`;
+              const style = {
+                position: "absolute",
+                objectFit: "contain",
+                ...getStyle(decoration.type, decoration.name),
+              };
 
-            return (
-              <img
-                key={index}
-                src={assetPath}
-                alt={decoration.name}
-                style={style}
-              />
-            );
-          })}
-        </div>
+              // 애니메이션 조건
+              const isClouds = decoration.type === "clouds";
+              const isBird = decoration.type === "animal" && decoration.name === "bird";
 
-        <div className="space-y-6 mb-4">
-          <div className="border-b border-gray-300"></div>
-          <div className="border-b border-gray-300"></div>
-          <div className="border-b border-gray-300"></div>
-          <div className="border-b border-gray-300"></div>
+              return isClouds || isBird ? (
+                <motion.img
+                  key={index}
+                  src={assetPath}
+                  alt={decoration.name}
+                  style={style}
+                  animate={
+                    isClouds
+                      ? { x: [0, 20, 0] } // 구름 흔들흔들
+                      : { y: [0, -30, 0] } // 새 둥둥
+                  }
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear", repeatType: "mirror", }}
+                />
+              ) : (
+                <img key={index} src={assetPath} alt={decoration.name} style={style} />
+              );
+            })}
+          </div>
+
+          <div className="space-y-6 mb-4">
+            <div className="border-b border-gray-300"></div>
+            <div className="border-b border-gray-300"></div>
+            <div className="border-b border-gray-300"></div>
+            <div className="border-b border-gray-300"></div>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
