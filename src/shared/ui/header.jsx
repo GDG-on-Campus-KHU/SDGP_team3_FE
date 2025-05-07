@@ -3,6 +3,7 @@ import clsx from "clsx";
 import React from "react";
 import { usePageBack } from "../model/usePageBack";
 import { useNavigate } from "react-router-dom";
+import { useCreatedChallengesStore } from "@/features/create/model/store/useCreatedChallenge";
 
 const HeaderVariants = {
   main: "flex pl-5",
@@ -31,7 +32,9 @@ export default function Header({
 }) {
   const navigate = useNavigate();
   const handleBack = usePageBack();
-  const goToMain = () => navigate("/");
+  const goToMain = () => navigate("/main");
+
+  const { setStep } = useCreatedChallengesStore();
 
   return (
     <Navbar className={clsx(className, defaultStyle)} {...props}>
@@ -47,7 +50,7 @@ export default function Header({
             alt="로고 아이콘"
             className="h-36 w-auto cursor-pointer"
             onClick={() => goToMain()}
-          /> // 추후 로고로 변경 예정
+          />
         )}
         <p className="!text-body-01 text-black">{title}</p>
         {variant === "create" && (
@@ -55,7 +58,10 @@ export default function Header({
             className="absolute left-5 cursor-pointer"
             src="/icons/prevIcon.svg"
             alt="이전 아이콘"
-            onClick={handleBack}
+            onClick={() => {
+              handleBack();
+              setStep(1);
+            }}
           />
         )}
       </header>
