@@ -1,18 +1,22 @@
 import { cn } from "@/shared/lib/utils";
 import ChallengeCard from "@/shared/ui/ChallengeCard";
 import React, { useState, useEffect } from "react";
-export default function SecondStep({
-  challenge,
-  step,
-  goalCount,
-  setGoalCount,
-  startDate,
-  endDate,
-  setStartDate,
-  setEndDate,
-}) {
+import { useCreatedChallengesStore } from "./model/store/useCreatedChallenge";
+import { formatISOtoDateStr } from "./lib/formatISOtoDateStr";
+export default function SecondStep() {
   const [isCountErr, setIsCountErr] = useState(false);
   const [isOverLimitErr, setIsOverLimitErr] = useState(false);
+
+  const {
+    step,
+    goalCount,
+    setGoalCount,
+    chooseChallenge,
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+  } = useCreatedChallengesStore();
 
   const MAX_GOAL_COUNT = 10;
   const MIN_GOAL_COUNT = 1;
@@ -52,22 +56,24 @@ export default function SecondStep({
 
   // 시작일자 & 종료일 계산
   useEffect(() => {
-    const today = new Date();
-    const start = today.toISOString().slice(0, 10);
+    const now = new Date();
     const count = parseInt(goalCount || "0", 10);
     const daysToAdd =
       count >= MIN_GOAL_COUNT && count <= MAX_GOAL_COUNT ? count * 3 : 0;
-    const end = new Date();
-    end.setDate(end.getDate() + daysToAdd);
-    const endStr = daysToAdd > 0 ? end.toISOString().slice(0, 10) : null;
 
-    setStartDate(start);
-    setEndDate(endStr);
+    const end = new Date(now);
+    end.setDate(end.getDate() + daysToAdd);
+
+    const startISO = now.toISOString(); // ISO 8601 형식
+    const endISO = daysToAdd > 0 ? end.toISOString() : "";
+
+    setStartDate(startISO);
+    setEndDate(endISO);
   }, [goalCount]);
 
   return (
     <div className="flex flex-col gap-5 pt-4">
-      <ChallengeCard challenge={challenge} step={step} />
+      <ChallengeCard challenge={chooseChallenge} step={step} />
       {/* 목표 횟수 설정 */}
       <div>
         <p className="text-body-02 text-gray-700">목표 횟수를 설정해주세요</p>
@@ -129,7 +135,7 @@ export default function SecondStep({
         </p>
         {endDate ? (
           <p className="text-body-01 text-green-500">
-            {startDate.replace(/-/g, ".")} - {endDate.replace(/-/g, ".")}
+            {formatISOtoDateStr(startDate)} - {formatISOtoDateStr(endDate)}
           </p>
         ) : (
           <p className="text-caption-01 text-gray-400">

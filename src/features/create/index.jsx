@@ -9,26 +9,31 @@ import { TOP_INFO } from "./config/headerConfig";
 
 import Header from "@/shared/ui/header";
 import { Btn } from "@/shared/ui/button";
+import { useCreatedChallengesStore } from "./model/store/useCreatedChallenge";
 
 export default function Create() {
   // TODO : state들 store로 관리
-  const [step, setStep] = useState(1);
-  const [goalCount, setGoalCount] = useState(1);
-  const [chooseChallenge, setChooseChallenge] = useState({});
-
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const {
+    step,
+    setStep,
+    addStep,
+    subtractStep,
+    goalCount,
+    setGoalCount,
+    chooseChallenge,
+    setChooseChallenge,
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+  } = useCreatedChallengesStore();
 
   const topInfo = TOP_INFO;
   const navigate = useNavigate();
 
-  const addStep = () => {
-    setStep((prev) => prev + 1);
-  };
-  const subtractStep = () => {
-    setStep((prev) => prev - 1);
-  };
-
+  useEffect(() => {
+    console.log("현재 step : ", step);
+  }, [step]);
   return (
     <>
       <Header variant="create" title="챌린지 생성하기" />
@@ -40,22 +45,9 @@ export default function Create() {
         />
         <div className="flex flex-col gap-4 px-5 pt-24">
           {step === 1 ? (
-            <FirstStep
-              step={step}
-              setStep={setStep}
-              setChooseChallenge={setChooseChallenge}
-            />
+            <FirstStep />
           ) : step === 2 ? (
-            <SecondStep
-              challenge={chooseChallenge}
-              step={step}
-              goalCount={goalCount}
-              setGoalCount={setGoalCount}
-              startDate={startDate}
-              endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
-            />
+            <SecondStep />
           ) : (
             <ThirdStep
               challenge={chooseChallenge}
@@ -78,7 +70,10 @@ export default function Create() {
           <Btn
             className="w-full"
             onClick={() => {
-              step === 3 ? navigate("/main") : addStep();
+              if (step === 3) {
+                navigate("/main");
+                setStep(1);
+              } else addStep();
             }}
           >
             {step === 2 ? "시작하기" : "홈으로 돌아가기"}
