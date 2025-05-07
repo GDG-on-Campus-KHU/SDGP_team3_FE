@@ -3,6 +3,7 @@ import MainPage from "./pages/main";
 import ChallengeCard from "./shared/ui/ChallengeCard";
 import { CHALLENGE_MOCK_DATAS_1 } from "./shared/config/challengeConfig";
 import WorldPage from "./pages/world";
+import CreatePage from "./pages/create";
 
 function App() {
   return (
@@ -10,10 +11,7 @@ function App() {
       <div className="relative flex w-full max-w-[600px] flex-col bg-background">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route
-            path="/create"
-            element={<ChallengeCard challenge={CHALLENGE_MOCK_DATAS_1[2]} />}
-          />
+          <Route path="/create" element={<CreatePage />} />
           <Route path="/world" element={<WorldPage />} />
         </Routes>
       </div>
