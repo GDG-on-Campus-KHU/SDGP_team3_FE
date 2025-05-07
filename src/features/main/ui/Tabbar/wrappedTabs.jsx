@@ -20,8 +20,8 @@ export default function WrappedTabs({ open, setChallengeId, setPreviewImage }) {
   const { challenges } = useChallengesStore();
 
   return (
-    <Tabs className="h-dvh max-w-[600px]" defaultValue="진행 중인 챌린지">
-      <TabsList className="fixed max-w-[600px] z-bar">
+    <Tabs className=" h-dvh max-w-[600px]" defaultValue="진행 중인 챌린지">
+      <TabsList className="fixed max-w-[600px] bg-background z-bar">
         <TabsTrigger
           value="진행 중인 챌린지"
           onClick={() => {
