@@ -78,7 +78,7 @@ export default function Create() {
           <Btn
             className="w-full"
             onClick={() => {
-              step === 3 ? navigate("/") : addStep();
+              step === 3 ? navigate("/main") : addStep();
             }}
           >
             {step === 2 ? "시작하기" : "홈으로 돌아가기"}

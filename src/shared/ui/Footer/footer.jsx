@@ -8,8 +8,9 @@ export default function Tabbar() {
   const navigate = useNavigate();
 
   const goToWorld = () => navigate("/world");
-  const goToMain = () => navigate("/");
+  const goToMain = () => navigate("/main");
   const goToCreate = () => navigate("/create");
+
   return (
     <div className="fixed -bottom-1 left-1/2 -translate-x-1/2 w-full max-w-[600px] z-bar">
       {/* 비율 유지용 래퍼 */}
@@ -33,7 +34,7 @@ export default function Tabbar() {
             <img src="/icons/challengeIcon.svg" alt="챌린지 아이콘" />
           </button>
           <button
-            className={clsx(pathname === "/" && "opacity-20")}
+            className={clsx(pathname === "/main" && "opacity-20")}
             onClick={goToWorld}
           >
             <img src="/icons/worldIcon.svg" alt="세계 아이콘" />
