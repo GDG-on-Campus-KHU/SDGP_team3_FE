@@ -3,22 +3,31 @@ import { CHALLENGE_ICONS } from "../config/challengeConfig";
 import ProgressBar from "./progressBar";
 import { Btn } from "./button";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useCreatedChallengesStore } from "@/features/create/model/store/useCreatedChallenge";
+import { formatISOtoDateStr } from "@/features/create/lib/formatISOtoDateStr";
 
 export default function ChallengeCard({
   challenge,
   onStampClick,
-  step,
-  setStep,
-  setChooseChallenge,
   // 챌린지 생성
   start_at,
   due_at,
   obj,
 }) {
   const icons = CHALLENGE_ICONS;
+  const { step, addStep, setChooseChallenge } = useCreatedChallengesStore();
 
   const location = useLocation();
   const pathname = location.pathname;
+
+  const typeKeyMap = {
+    tumbler: "tb",
+    order_detail: "od",
+  };
+
+  const prefix = typeKeyMap[challenge.type] || "";
+  const challengeAch = challenge?.[`${prefix}_ach`] ?? 0;
+  const challengeObj = challenge?.[`${prefix}_obj`] ?? 0;
 
   return (
     <div className="w-full px-5 py-4 bg-white shadow-md rounded-2xl flex gap-3">
@@ -26,34 +35,35 @@ export default function ChallengeCard({
         <img src={icons[challenge.type]} alt="텀블러 아이콘" />
       </div>
       <div className="w-full flex flex-col">
+        {/* 챌린지 진행 기간 */}
         <div className="flex w-full justify-between">
           <p className="text-body-02 w-full text-black">{challenge.title}</p>
-          <div className="mt-[2px] w-full">
-            {pathname === "/create" ? (
-              start_at &&
-              due_at && (
-                <p className="text-caption-01 text-gray-700 mt-[2px] w-full text-right">
-                  {start_at.replace(/-/g, ".")} - {due_at.replace(/-/g, ".")}
-                </p>
-              )
-            ) : (
-              <p className="text-caption-01 text-gray-700 mt-[2px] w-full text-right">
-                {challenge.start_at} - {challenge.due_at}
+          {pathname === "/create" ? (
+            start_at &&
+            due_at && (
+              <p className="text-caption-01 text-gray-700 w-full text-right">
+                {formatISOtoDateStr(start_at)} - {formatISOtoDateStr(due_at)}
               </p>
-            )}
-          </div>
+            )
+          ) : (
+            <p className="text-caption-01 text-gray-700 w-full text-right">
+              {challenge.start_at} - {challenge.due_at}
+            </p>
+          )}
         </div>
         <p className="text-caption-01 text-gray-700 mb-[2px]">
           {challenge.description}
         </p>
+
+        {/* 프로그레스 바 */}
         {pathname !== "/create" ? (
-          <ProgressBar currentValue={challenge.ach} maxValue={challenge.obj} />
+          <ProgressBar currentValue={challengeAch} maxValue={challengeObj} />
         ) : (
           step === 3 && <ProgressBar currentValue={0} maxValue={obj} />
         )}
         {challenge.is_done && pathname !== "/create" ? (
           <p className="mt-3 text-caption-02 text-gray-700">
-            {challenge.obj}번의 목표 횟수를 모두 달성했어요!
+            {challengeObj}번의 목표 횟수를 모두 달성했어요!
           </p>
         ) : (
           step !== 2 &&
@@ -64,7 +74,7 @@ export default function ChallengeCard({
                 if (challenge.start_at) {
                   onStampClick(challenge.id);
                 } else {
-                  setStep((prevStep) => prevStep + 1);
+                  addStep();
                   setChooseChallenge(challenge);
                 }
               }}
