@@ -11,7 +11,7 @@ export default function ChallengeCard({
   setStep,
   setChooseChallenge,
   // 챌린지 생성
-  started_at,
+  start_at,
   due_at,
   obj,
 }) {
@@ -28,20 +28,20 @@ export default function ChallengeCard({
       <div className="w-full flex flex-col">
         <div className="flex w-full justify-between">
           <p className="text-body-02 w-full text-black">{challenge.title}</p>
-          <p className="text-caption-01 text-gray-700 mt-[2px] w-full text-right">
+          <div className="mt-[2px] w-full">
             {pathname === "/create" ? (
-              started_at &&
+              start_at &&
               due_at && (
                 <p className="text-caption-01 text-gray-700 mt-[2px] w-full text-right">
-                  {started_at.replace(/-/g, ".")} - {due_at.replace(/-/g, ".")}
+                  {start_at.replace(/-/g, ".")} - {due_at.replace(/-/g, ".")}
                 </p>
               )
             ) : (
               <p className="text-caption-01 text-gray-700 mt-[2px] w-full text-right">
-                {challenge.started_at} - {challenge.due_at}
+                {challenge.start_at} - {challenge.due_at}
               </p>
             )}
-          </p>
+          </div>
         </div>
         <p className="text-caption-01 text-gray-700 mb-[2px]">
           {challenge.description}
@@ -61,7 +61,7 @@ export default function ChallengeCard({
             <Btn
               className="self-end mt-3"
               onClick={() => {
-                if (challenge.started_at) {
+                if (challenge.start_at) {
                   onStampClick(challenge.id);
                 } else {
                   setStep((prevStep) => prevStep + 1);
@@ -69,7 +69,7 @@ export default function ChallengeCard({
                 }
               }}
             >
-              {challenge.started_at ? "도장 찍기" : "시작하기"}
+              {challenge.start_at ? "도장 찍기" : "시작하기"}
             </Btn>
           )
         )}

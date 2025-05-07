@@ -19,7 +19,7 @@ export default function ThirdStep({
       <ChallengeCard
         challenge={challenge}
         step={step}
-        started_at={startDate}
+        start_at={startDate}
         due_at={endDate}
         obj={goalCount}
       />

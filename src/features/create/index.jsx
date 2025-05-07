@@ -1,17 +1,17 @@
-import ChallengeCard from "@/shared/ui/ChallengeCard";
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import TopSection from "./ui/topSection";
-import Header from "@/shared/ui/header";
-import { CREATE_CHALLENGE_MOCK_DATAS } from "@/shared/config/challengeConfig";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FirstStep from "./firstStep";
-import { useEffect } from "react";
 import SecondStep from "./secondStep";
-import { Btn } from "@/shared/ui/button";
 import ThirdStep from "./thirdStep";
 
+import TopSection from "./ui/topSection";
+import { TOP_INFO } from "./config/headerConfig";
+
+import Header from "@/shared/ui/header";
+import { Btn } from "@/shared/ui/button";
+
 export default function Create() {
+  // TODO : state들 store로 관리
   const [step, setStep] = useState(1);
   const [goalCount, setGoalCount] = useState(1);
   const [chooseChallenge, setChooseChallenge] = useState({});
@@ -19,27 +19,7 @@ export default function Create() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const topInfo = [
-    {
-      step: 1,
-      title: "챌린지 선택하기",
-      description: "시작하고 싶은 챌린지를 선택해주세요",
-    },
-    {
-      step: 2,
-      title: "챌린지 목표 횟수 정하기",
-      description:
-        "챌린지를 시행할 목표 횟수를 정해주세요\n 목표 횟수에 따라 챌린지 진행 기간이 결정돼요",
-    },
-    {
-      step: 3,
-      title: "챌린지 시작",
-      description: "기간 내에 목표 횟수를 열심히 달성해주세요!",
-    },
-  ];
-  const challenges = CREATE_CHALLENGE_MOCK_DATAS;
-
-  const location = useLocation();
+  const topInfo = TOP_INFO;
   const navigate = useNavigate();
 
   const addStep = () => {
@@ -48,10 +28,6 @@ export default function Create() {
   const subtractStep = () => {
     setStep((prev) => prev - 1);
   };
-
-  useEffect(() => {
-    console.log("step changed: ", step);
-  }, [step]);
 
   return (
     <>
@@ -112,17 +88,3 @@ export default function Create() {
     </>
   );
 }
-
-// {step !== 1 && (
-//   <div className="fixed bottom-4 w-full max-w-[600px] h-fit flex justify-between px-5 gap-4">
-//     {step === 2 && (
-//       <Btn className="w-full" variant="cancel" onClick={subtractStep}>
-//         이전
-//       </Btn>
-//     )}
-
-//     <Btn className="w-full" onClick={addStep}>
-//       {step === 2 ? "시작하기" : "홈으로 돌아가기"}
-//     </Btn>
-//   </div>
-// )}
