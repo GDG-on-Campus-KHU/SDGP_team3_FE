@@ -78,6 +78,7 @@ export default function PhotoDialog({
         }
       } catch (error) {
         console.error("스탬프 인증 실패:", error);
+
         console.log(stamps);
       } finally {
         setIsLoading(false);
