@@ -34,7 +34,8 @@ export default function PhotoDialog({
   const inputRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const { stamps, addStamp } = useStampsStore();
-  const { addChallengeCount } = useChallengesStore();
+  const { addChallengeCount, successChallenge, setSuccessChallenge } =
+    useChallengesStore();
 
   const navigate = useNavigate();
 
@@ -48,40 +49,36 @@ export default function PhotoDialog({
       console.log("previewImage : ", previewImage);
 
       try {
-        await certificateStamp(
+        const response = await certificateStamp(
           photoFile,
           chooseChallenge.id,
           chooseChallenge.type
         );
         setIsOpen(false);
-        openToast();
-        addStamp({
-          id: stamps.length,
-          type: chooseChallenge.type,
-          saved_at: new Date().toISOString(),
-        });
-        console.log(stamps);
+        if (response?.status === 201) {
+          openToast();
+          addStamp({
+            id: stamps.length,
+            type: chooseChallenge.type,
+            saved_at: new Date().toISOString(),
+          });
+          console.log(stamps);
 
-        // 챌린지 카운트 +1
-        const completedChallenge = addChallengeCount(chooseChallenge.id);
+          const updatedChallenge = addChallengeCount(chooseChallenge.id);
+          console.log("updatedChallenge.is_done : ", updatedChallenge.is_done);
 
-        // 목표 달성 시 성공 페이지로 이동
-        if (completedChallenge) {
-          setSuccessChallenge(completedChallenge);
-          navigate("/challenge/success"); // ← 실제 경로로 수정
+          if (updatedChallenge?.is_done) {
+            setSuccessChallenge(updatedChallenge);
+            navigate("/challenge/success", {
+              state: { challenge: updatedChallenge },
+            });
+            console.log("어 대박 이거 나오면 성공한 거임: ", updatedChallenge);
+          }
+          console.log("왜 이동을 안 할까요: ", updatedChallenge);
         }
       } catch (error) {
         console.error("스탬프 인증 실패:", error);
-        addStamp({
-          id: 7,
-          type: chooseChallenge.type,
-          saved_at: new Date().toISOString(), // 예시
-        });
-        const completedChallenge = addChallengeCount(chooseChallenge.id);
-        if (completedChallenge) {
-          setSuccessChallenge(completedChallenge);
-          navigate("/challenge/success");
-        }
+
         console.log(stamps);
       } finally {
         setIsLoading(false);

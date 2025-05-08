@@ -2,8 +2,6 @@ import axios from "axios";
 
 const SERVER_URL = import.meta.env.VITE_APP_SERVER_URL;
 
-// const TEST_ACCESS_TOKEN = localStorage.getItem("accessToken");
-
 export const getStamps = async () => {
   const TEST_ACCESS_TOKEN = localStorage.getItem("accessToken");
 
@@ -41,7 +39,7 @@ export const certificateStamp = async (photoFile, id, type) => {
         },
       }
     );
-    return response.data;
+    return response;
   } catch (error) {
     console.log(error);
   }
