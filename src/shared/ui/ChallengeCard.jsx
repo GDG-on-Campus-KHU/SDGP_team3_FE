@@ -24,7 +24,7 @@ export default function ChallengeCard({
 
   const typeKeyMap = {
     tumbler: "tb",
-    order_detail: "od",
+    order_details: "od",
     transportation: "tp",
     basket: "bs",
     plogging: "pg",
@@ -33,8 +33,6 @@ export default function ChallengeCard({
   const prefix = typeKeyMap[challenge.type] || "";
   const challengeAch = challenge?.[`${prefix}_ach`] ?? 0;
   const challengeObj = challenge?.[`${prefix}_obj`] ?? 0;
-
-  console.log(challenge.type);
 
   return (
     <div className="w-full px-5 py-4 bg-white shadow-md rounded-2xl flex gap-3">
@@ -79,7 +77,7 @@ export default function ChallengeCard({
               className="self-end mt-3"
               onClick={() => {
                 if (challenge.start_at) {
-                  onStampClick(challenge.id);
+                  onStampClick(challenge.id, challenge.type);
                 } else {
                   addStep();
                   setChooseChallenge(challenge);

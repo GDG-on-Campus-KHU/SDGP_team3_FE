@@ -3,8 +3,8 @@ import { getChallenges } from "../api/challengeApi";
 import { CHALLENGE_MOCK_DATAS_1 } from "@/shared/config/challengeConfig";
 
 export const useChallengesStore = create((set) => ({
-  // challenges: [],
-  challenges: CHALLENGE_MOCK_DATAS_1,
+  challenges: [],
+  // challenges: CHALLENGE_MOCK_DATAS_1,
   setChallenges: (challenges) => set({ challenges }),
   // 성공한 챌린지
   successChallenge: null,

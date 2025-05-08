@@ -5,7 +5,7 @@ export const CHALLENGE_ICONS = [
     color: "#F6A6A6",
   },
   {
-    type: "order_detail",
+    type: "order_details",
     src: "/icons/challenge/spoonIcon.svg",
     color: "#FEC75B",
   },
@@ -103,7 +103,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
   {
     id: 6,
     is_done: false,
-    type: "order_detail",
+    type: "order_details",
     title: "일회용 수저 받지 않기",
     description: "배달 어플 이용 시, ‘일회용 수저 안 받기'에 체크해요",
     start_at: "2025.05.08",
@@ -129,7 +129,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
 export const CREATE_CHALLENGE_MOCK_DATAS = [
   {
     id: 10,
-    type: "order_detail",
+    type: "order_details",
     title: "일회용 수저 받지 않기",
     description: "배달 어플 이용 시, ‘일회용 수저 안 받기'에 체크해요",
   },
