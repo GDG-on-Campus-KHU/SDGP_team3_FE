@@ -9,30 +9,30 @@ export const STAMP_DATAS = [
     id: 2,
     saved_at: "2025-04-30T14:30:00Z",
     // save_url: '', //
-    type: "order_detail",
+    type: "transportation",
   },
   {
     id: 3,
     saved_at: "2025-05-02T14:30:00Z",
     // save_url: '', //
-    type: "tumbler",
+    type: "basket",
   },
   {
     id: 4,
     saved_at: "2025-05-04T02:30:00Z",
     // save_url: '', //
-    type: "order_detail",
+    type: "tumbler",
   },
   {
     id: 5,
     saved_at: "2025-05-04T12:30:00Z",
     // save_url: '', //
-    type: "order_detail",
+    type: "plogging",
   },
   {
     id: 6,
     save_at: "2025-04-30T14:30:00Z",
     // save_url: '', //
-    type: "order_detail",
+    type: "plogging",
   },
 ];

@@ -27,8 +27,9 @@ export const buildChallengePayload = () => {
     useCreatedChallengesStore.getState();
 
   return {
-    uid: "1",
-    // uid: localStorage.getItem('uid'),
+    uid: localStorage.getItem("uid"),
+    title: chooseChallenge.title,
+    description: chooseChallenge.description,
     start_at: startDate,
     due_at: endDate,
     od_obj: chooseChallenge.type === "order_detail" ? goalCount : null,

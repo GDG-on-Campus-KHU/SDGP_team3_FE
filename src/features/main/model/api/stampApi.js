@@ -6,7 +6,7 @@ const TEST_ACCESS_TOKEN = localStorage.getItem("accessToken");
 
 export const getStamps = async () => {
   try {
-    const response = await axios.get(`${SERVER_URL}/stamps`, {
+    const response = await axios.get(`${SERVER_URL}/api/stamps`, {
       headers: {
         Authorization: `Bearer ${TEST_ACCESS_TOKEN}`,
       },

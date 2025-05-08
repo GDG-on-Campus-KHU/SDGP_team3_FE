@@ -8,7 +8,9 @@ export default function ChallengeList({
   onStampClick,
   currentTab,
 }) {
-  const filteredList = list.filter((challenge) =>
+  const safeList = Array.isArray(list) ? list : [];
+
+  const filteredList = safeList.filter((challenge) =>
     currentTab === "진행 중인 챌린지" ? !challenge.is_done : challenge.is_done
   );
   return (

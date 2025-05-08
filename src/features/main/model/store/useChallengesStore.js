@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { useNavigate } from "react-router-dom";
 import { getChallenges } from "../api/challengeApi";
 import { CHALLENGE_MOCK_DATAS_1 } from "@/shared/config/challengeConfig";
 
@@ -15,6 +14,12 @@ export const useChallengesStore = create((set) => ({
   fetchChallenges: async () => {
     const data = await getChallenges();
     set({ challenges: data });
+  },
+
+  addChallenge: (newChallenge) => {
+    set((state) => ({
+      challenges: [...state.challenges, newChallenge],
+    }));
   },
 
   // 챌린지 포기하기

@@ -25,11 +25,16 @@ export default function ChallengeCard({
   const typeKeyMap = {
     tumbler: "tb",
     order_detail: "od",
+    transportation: "tp",
+    basket: "bs",
+    plogging: "pg",
   };
 
   const prefix = typeKeyMap[challenge.type] || "";
   const challengeAch = challenge?.[`${prefix}_ach`] ?? 0;
   const challengeObj = challenge?.[`${prefix}_obj`] ?? 0;
+
+  console.log(challenge.type);
 
   return (
     <div className="w-full px-5 py-4 bg-white shadow-md rounded-2xl flex gap-3">
