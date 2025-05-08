@@ -6,8 +6,8 @@ const PostCard = () => {
   const decorations = [
     { is_equipped: true, type: "terrain", name: "blue-terrain" },
     { is_equipped: true, type: "sky", name: "blue-sky" },
-    { is_equipped: true, type: "clouds", name: "clouds"},
-    { is_equipped: true, type: "rainbow", name: "rainbow"},
+    { is_equipped: true, type: "clouds", name: "clouds" },
+    { is_equipped: true, type: "rainbow", name: "rainbow" },
     { is_equipped: true, type: "grass", name: "grass" },
     { is_equipped: true, type: "animal", name: "bird" },
     { is_equipped: true, type: "animal", name: "rabbit" },
@@ -18,37 +18,103 @@ const PostCard = () => {
     { is_equipped: true, type: "tree", name: "apple-tree" },
   ];
 
-  const equippedAssets = decorations.filter(d => d.is_equipped);
+  const equippedAssets = decorations.filter((d) => d.is_equipped);
 
   const getStyle = (type, name) => {
     switch (type) {
       case "sky":
         return { zIndex: 0, top: 0, left: 0, width: "100%", height: "auto" };
       case "terrain":
-        return { zIndex: 10, bottom: 0, left: 0, width: "100%", height: "auto" };
+        return {
+          zIndex: 10,
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "auto",
+        };
       case "clouds":
-        return { zIndex: 20, top: "10px", left: "70px", width: "70%", height: "auto"};
+        return {
+          zIndex: 20,
+          top: "20px",
+          left: "70px",
+          width: "70%",
+          height: "auto",
+        };
       case "rainbow":
-        return { zIndex: 7, top: "10px", right: "0px", width: "60%", height: "auto",};
+        return {
+          zIndex: 7,
+          top: "100px",
+          right: "0px",
+          width: "60%",
+          height: "auto",
+        };
       case "grass":
-        return { zIndex: 50, bottom: "60px", right: "20px", width: "10%", height: "auto" };
+        return {
+          zIndex: 50,
+          bottom: "52px",
+          right: "20px",
+          width: "10%",
+          height: "auto",
+        };
       case "tree":
         if (name === "tree")
-          return { zIndex: 20, bottom: "60px", left: "5px", width: "40%", height: "auto" };
+          return {
+            zIndex: 20,
+            bottom: "60px",
+            left: "5px",
+            width: "40%",
+            height: "auto",
+          };
         if (name === "apple-tree")
-          return { zIndex: 25, bottom: "50px", left: "30px", width: "40%", height: "auto" };
+          return {
+            zIndex: 25,
+            bottom: "50px",
+            left: "30px",
+            width: "40%",
+            height: "auto",
+          };
       case "flower":
         if (name === "lavender")
-          return { zIndex: 200, bottom: "0px", left: "100px", width: "13%", height: "auto" };
+          return {
+            zIndex: 200,
+            bottom: "0px",
+            left: "100px",
+            width: "13%",
+            height: "auto",
+          };
         if (name === "daisy")
-          return { zIndex: 200, bottom: "0px", left: "140px", width: "13%", height: "auto" };
+          return {
+            zIndex: 200,
+            bottom: "0px",
+            left: "140px",
+            width: "13%",
+            height: "auto",
+          };
         if (name === "tulips")
-          return { zIndex: 200, bottom: "0px", left: "60px", width: "13%", height: "auto" };
+          return {
+            zIndex: 200,
+            bottom: "0px",
+            left: "60px",
+            width: "13%",
+            height: "auto",
+          };
       case "animal":
         if (name === "bird")
-          return { zIndex: 50, top: "100px", left: "50px", width: "15%", height: "auto" };
+          return {
+            zIndex: 50,
+            top: "100px",
+            left: "50px",
+            width: "15%",
+            height: "auto",
+          };
         if (name === "rabbit")
-          return { zIndex: 100, bottom: "30px", right: "70px", width: "20%", height: "auto" };
+          return {
+            zIndex: 100,
+            bottom: "30px",
+            right: "70px",
+            width: "20%",
+            height: "auto",
+          };
         break;
       default:
         return { zIndex: 5 };
@@ -75,7 +141,8 @@ const PostCard = () => {
 
               // 애니메이션 조건
               const isClouds = decoration.type === "clouds";
-              const isBird = decoration.type === "animal" && decoration.name === "bird";
+              const isBird =
+                decoration.type === "animal" && decoration.name === "bird";
 
               return isClouds || isBird ? (
                 <motion.img
@@ -86,12 +153,22 @@ const PostCard = () => {
                   animate={
                     isClouds
                       ? { x: [0, 20, 0] } // 구름 흔들흔들
-                      : { y: [0, -30, 0] } // 새 둥둥
+                      : { y: [50, 30, 0] } // 새 둥둥
                   }
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear", repeatType: "mirror", }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatType: "mirror",
+                  }}
                 />
               ) : (
-                <img key={index} src={assetPath} alt={decoration.name} style={style} />
+                <img
+                  key={index}
+                  src={assetPath}
+                  alt={decoration.name}
+                  style={style}
+                />
               );
             })}
           </div>

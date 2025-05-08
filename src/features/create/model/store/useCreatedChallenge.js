@@ -32,8 +32,8 @@ export const buildChallengePayload = () => {
     description: chooseChallenge.description,
     start_at: startDate,
     due_at: endDate,
-    od_obj: chooseChallenge.type === "order_detail" ? goalCount : null,
-    od_ach: chooseChallenge.type === "order_detail" ? 0 : null,
+    od_obj: chooseChallenge.type === "order_details" ? goalCount : null,
+    od_ach: chooseChallenge.type === "order_details" ? 0 : null,
     tb_obj: chooseChallenge.type === "tumbler" ? goalCount : null,
     tb_ach: chooseChallenge.type === "tumbler" ? 0 : null,
   };
