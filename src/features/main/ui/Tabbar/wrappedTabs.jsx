@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
 import {
   CHALLENGE_ICONS,
@@ -11,21 +11,33 @@ export default function WrappedTabs({ open, setChallengeId, setPreviewImage }) {
   const challengeIcon = CHALLENGE_ICONS;
   const [currentTab, setCurrentTab] = useState("진행 중인 챌린지");
 
+  const scrollRef = useRef(null);
+
   const handleStampClick = (id) => {
     setChallengeId(id);
     setPreviewImage(null);
     open();
   };
 
+  const handleTabClick = (tab) => {
+    setCurrentTab(tab);
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  };
+
   const { challenges } = useChallengesStore();
 
   return (
-    <Tabs className=" h-dvh max-w-[600px]" defaultValue="진행 중인 챌린지">
-      <TabsList className="fixed max-w-[600px] bg-background z-bar">
+    <Tabs
+      className=" h-dvh max-w-[600px] pt-1 border !border-t-gray-100 !border-t-2 border-transparent"
+      defaultValue="진행 중인 챌린지"
+    >
+      <TabsList className="sticky top-14 max-w-[600px] px-5 bg-background z-bar">
         <TabsTrigger
           value="진행 중인 챌린지"
           onClick={() => {
-            setCurrentTab("진행 중인 챌린지");
+            handleTabClick("진행 중인 챌린지");
           }}
         >
           진행 중인 챌린지
@@ -33,14 +45,17 @@ export default function WrappedTabs({ open, setChallengeId, setPreviewImage }) {
         <TabsTrigger
           value="완료한 챌린지"
           onClick={() => {
-            setCurrentTab("완료한 챌린지");
+            handleTabClick("완료한 챌린지");
           }}
         >
           완료한 챌린지
         </TabsTrigger>
       </TabsList>
-      <div className="flex-1 px-5 !pb-24 pt-12 overflow-x-auto scrollbar-hide ">
-        <div className="flex flex-col justify-center gap-4 w-full h-[90%]">
+      <div
+        ref={scrollRef}
+        className="flex-1 px-5 pt-3 !pb-24 overflow-y-auto scrollbar-hide h-[56dvh]"
+      >
+        <div className="flex flex-col justify-start gap-4 w-full h-auto">
           <ChallengeList
             list={challenges}
             icons={challengeIcon}

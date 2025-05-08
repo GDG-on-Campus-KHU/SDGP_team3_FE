@@ -7,6 +7,7 @@ import PhotoDialog from "@/shared/ui/Modal/photoDialog";
 import WrappedTabs from "./ui/Tabbar/wrappedTabs";
 import { useEffect } from "react";
 import { useChallengesStore } from "./model/store/useChallengesStore";
+import Coupon from "./ui/Coupon/coupon";
 
 export default function Main() {
   const {
@@ -30,6 +31,12 @@ export default function Main() {
     <>
       <Header />
       <section className="mt-[55px] h-[1px] w-full" />
+      {/* <Coupon /> */}
+
+      <div className="px-5 mb-6">
+        <p className="text-body-02 text-black">지금까지 꾸욱 찍은 스탬프예요</p>
+        <div className="h-36 bg-white rounded-2xl shadow-md"></div>
+      </div>
       <WrappedTabs
         open={open}
         setChallengeId={setChallengeId}
