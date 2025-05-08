@@ -10,6 +10,7 @@ import { TOP_INFO } from "./config/headerConfig";
 import Header from "@/shared/ui/header";
 import { Btn } from "@/shared/ui/button";
 import { useCreatedChallengesStore } from "./model/store/useCreatedChallenge";
+import { useChallengesStore } from "../main/model/store/useChallengesStore";
 
 export default function Create() {
   // TODO : state들 store로 관리
@@ -27,6 +28,8 @@ export default function Create() {
     setStartDate,
     setEndDate,
   } = useCreatedChallengesStore();
+
+  const { addChallenge } = useChallengesStore();
 
   const topInfo = TOP_INFO;
   const navigate = useNavigate();
@@ -73,6 +76,19 @@ export default function Create() {
               if (step === 3) {
                 navigate("/main");
                 setStep(1);
+                addChallenge({
+                  id: 1,
+                  is_done: false,
+                  type: "tumbler",
+                  title: "텀블러 사용하기",
+                  description: "일회용 컵 대신 텀블러를 사용해요",
+                  start_at: "2025.05.08",
+                  due_at: "2025.05.23",
+                  tb_ach: 0,
+                  tb_obj: 5,
+                  od_ach: null,
+                  od_obj: null,
+                });
               } else addStep();
             }}
           >

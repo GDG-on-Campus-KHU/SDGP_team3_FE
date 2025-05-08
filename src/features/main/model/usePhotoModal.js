@@ -3,18 +3,18 @@ import { useState } from "react";
 
 export function usePhotoModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [challengeId, setChallengeId] = useState(null);
+  const [chooseChallenge, setChooseChallenge] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [photoFile, setPhotoFile] = useState(null);
 
-  const open = (id) => {
-    setChallengeId(id);
-    setIsOpen(true);
-    console.log(isOpen);
+  const open = (id, type) => {
+    setChooseChallenge({ id, type });
+    setTimeout(() => setIsOpen(true), 0);
   };
 
   const close = () => {
     setIsOpen(false);
-    setChallengeId(null);
+    setChooseChallenge(null);
     setPreviewImage(null);
   };
 
@@ -23,17 +23,21 @@ export function usePhotoModal() {
     if (file) {
       const url = URL.createObjectURL(file);
       setPreviewImage(url);
+      setPhotoFile(file);
     }
   };
 
   return {
     isOpen,
+    setIsOpen,
     open,
     close,
-    challengeId,
-    setChallengeId,
+    chooseChallenge,
+    setChooseChallenge,
     previewImage,
     setPreviewImage,
     handleChange,
+    photoFile,
+    setPhotoFile,
   };
 }

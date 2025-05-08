@@ -1,11 +1,10 @@
 import { create } from "zustand";
-import { useNavigate } from "react-router-dom";
 import { getChallenges } from "../api/challengeApi";
 import { CHALLENGE_MOCK_DATAS_1 } from "@/shared/config/challengeConfig";
 
 export const useChallengesStore = create((set) => ({
-  // challenges: [],
-  challenges: CHALLENGE_MOCK_DATAS_1,
+  challenges: [],
+  // challenges: CHALLENGE_MOCK_DATAS_1,
   setChallenges: (challenges) => set({ challenges }),
   // 성공한 챌린지
   successChallenge: null,
@@ -17,6 +16,12 @@ export const useChallengesStore = create((set) => ({
     set({ challenges: data });
   },
 
+  addChallenge: (newChallenge) => {
+    set((state) => ({
+      challenges: [...state.challenges, newChallenge],
+    }));
+  },
+
   // 챌린지 포기하기
   giveupChallenges: (challengeId) => {
     set((state) => ({
@@ -25,7 +30,7 @@ export const useChallengesStore = create((set) => ({
       ),
     }));
   },
-  // 챌린지 성취 횟수 추가 -> is_done: true;
+  // 챌린지 성취 횟수 추가
   addChallengeCount: (challengeId) => {
     let completedChallenge = null;
 
@@ -54,12 +59,5 @@ export const useChallengesStore = create((set) => ({
     });
 
     return completedChallenge; // 컴포넌트한테 반환
-  },
-
-  // 챌린지 성공  -> is_done: true;
-  successChallenge: (challenge) => {
-    set(() => ({
-      successChallengeItem: challenge,
-    }));
   },
 }));
