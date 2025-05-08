@@ -41,23 +41,30 @@ export const useChallengesStore = create((set) => ({
       if (index === -1) return state;
 
       const challenge = state.challenges[index];
-      const newAch = challenge.ach + 1;
-      const isDone = newAch >= challenge.obj;
+      let updatedChallenge = { ...challenge };
 
-      const updatedChallenge = {
-        ...challenge,
-        ach: newAch,
-        is_done: isDone,
-      };
+      if (challenge.type === "tumbler") {
+        // 텀블러 사용하기라면
+        const newAch = (challenge.tb_ach || 0) + 1;
+        const isDone = newAch >= (challenge.tb_obj || 0);
+        updatedChallenge.tb_ach = newAch;
+        updatedChallenge.is_done = isDone;
+        if (isDone) completedChallenge = updatedChallenge;
+      } else if (challenge.type === "order_details") {
+        // 일회용 수저 사용 안 하기라면
+        const newAch = (challenge.od_ach || 0) + 1;
+        const isDone = newAch >= (challenge.od_obj || 0);
+        updatedChallenge.od_ach = newAch;
+        updatedChallenge.is_done = isDone;
+        if (isDone) completedChallenge = updatedChallenge;
+      }
 
       const updatedChallenges = [...state.challenges];
       updatedChallenges[index] = updatedChallenge;
 
-      if (isDone) completedChallenge = updatedChallenge;
-
-      return { challenges: updatedChallenges }; // 상태만 업데이트
+      return { challenges: updatedChallenges };
     });
 
-    return completedChallenge; // 컴포넌트한테 반환
+    return completedChallenge;
   },
 }));

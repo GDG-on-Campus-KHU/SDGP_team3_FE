@@ -41,7 +41,7 @@ export const certificateStamp = async (photoFile, id, type) => {
         },
       }
     );
-    return response.data;
+    return response;
   } catch (error) {
     console.log(error);
   }
