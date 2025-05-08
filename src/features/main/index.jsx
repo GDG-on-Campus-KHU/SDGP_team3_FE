@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../shared/ui/header";
 import Footer from "../../shared/ui/Footer/footer";
 import { CHALLENGE_ICONS } from "../../shared/config/challengeConfig.js";
@@ -8,6 +8,7 @@ import WrappedTabs from "./ui/Tabbar/wrappedTabs";
 import { useChallengesStore } from "./model/store/useChallengesStore";
 import Coupon from "./ui/Coupon/coupon";
 import { STAMP_DATAS } from "./config/stampConfig";
+import { useStampsStore } from "./model/store/useStampsStore";
 
 export default function Main() {
   const {
@@ -21,11 +22,12 @@ export default function Main() {
   } = usePhotoModal();
 
   const { fetchChallenges } = useChallengesStore();
-  const stamps = STAMP_DATAS;
+  const { stamps, fetchStamps } = useStampsStore();
 
   // Todo : 서버 연결 시 주석 해제
   // useEffect(() => {
   //   fetchChallenges();
+  //   fetchStamps();
   // }, []);
 
   return (
