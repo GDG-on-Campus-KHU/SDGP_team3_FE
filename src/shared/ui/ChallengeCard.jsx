@@ -15,6 +15,8 @@ export default function ChallengeCard({
   obj,
 }) {
   const icons = CHALLENGE_ICONS;
+  const matchedIcon = icons.find((icon) => icon.type === challenge.type);
+
   const { step, addStep, setChooseChallenge } = useCreatedChallengesStore();
 
   const location = useLocation();
@@ -32,7 +34,7 @@ export default function ChallengeCard({
   return (
     <div className="w-full px-5 py-4 bg-white shadow-md rounded-2xl flex gap-3">
       <div className="flex justify-center items-center rounded-full w-7 h-7 bg-green-500">
-        <img src={icons[challenge.type]} alt="텀블러 아이콘" />
+        <img src={matchedIcon?.src} alt={`${matchedIcon?.type} 아이콘`} />
       </div>
       <div className="w-full flex flex-col">
         {/* 챌린지 진행 기간 */}

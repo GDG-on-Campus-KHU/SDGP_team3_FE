@@ -1,11 +1,30 @@
-export const CHALLENGE_ICONS = {
-  tumbler: "/icons/challenge/tumberIcon.svg",
-  order_detail: "/icons/challenge/spoonIcon.svg",
-
-  transportation: "/icons/challenge/transportationIcon.svg",
-  basket: "/icons/challenge/basketIcon.svg",
-  plogging: "/icons/challenge/ploggingIcon.svg",
-};
+export const CHALLENGE_ICONS = [
+  {
+    type: "tumbler",
+    src: "/icons/challenge/tumberIcon.svg",
+    color: "#F6A6A6",
+  },
+  {
+    type: "order_detail",
+    src: "/icons/challenge/spoonIcon.svg",
+    color: "#FEC75B",
+  },
+  {
+    type: "transportation",
+    src: "/icons/challenge/transportationIcon.svg",
+    color: "blue-600",
+  },
+  {
+    type: "basket",
+    src: "/icons/challenge/basketIcon.svg",
+    color: "purple-600",
+  },
+  {
+    type: "plogging",
+    src: "/icons/challenge/ploggingIcon.svg",
+    color: "pink-600",
+  },
+];
 
 export const CHALLENGE_MOCK_DATAS_1 = [
   // 진행 중인 챌린지 리스트
@@ -93,7 +112,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 10,
   },
   {
-    id: 7,
+    id: 8,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
@@ -104,7 +123,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 10,
   },
   {
-    id: 7,
+    id: 9,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
@@ -115,7 +134,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 10,
   },
   {
-    id: 7,
+    id: 10,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
@@ -126,7 +145,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 10,
   },
   {
-    id: 7,
+    id: 11,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
@@ -137,7 +156,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 10,
   },
   {
-    id: 7,
+    id: 12,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
@@ -148,7 +167,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 10,
   },
   {
-    id: 7,
+    id: 13,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
@@ -159,7 +178,7 @@ export const CHALLENGE_MOCK_DATAS_1 = [
     obj: 10,
   },
   {
-    id: 7,
+    id: 14,
     is_done: true,
     type: "plogging",
     title: "줍깅 참여하기",
