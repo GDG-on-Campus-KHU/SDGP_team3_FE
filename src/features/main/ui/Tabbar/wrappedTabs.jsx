@@ -7,17 +7,18 @@ import {
 import ChallengeList from "../challengeList";
 import { useChallengesStore } from "../../model/store/useChallengesStore";
 
-export default function WrappedTabs({ open, setChallengeId, setPreviewImage }) {
+export default function WrappedTabs({
+  open,
+  setChallengeId,
+  chooseChallenge,
+  setChooseChallenge,
+  setPreviewImage,
+  handleStampClick,
+}) {
   const challengeIcon = CHALLENGE_ICONS;
   const [currentTab, setCurrentTab] = useState("진행 중인 챌린지");
 
   const scrollRef = useRef(null);
-
-  const handleStampClick = (id) => {
-    setChallengeId(id);
-    setPreviewImage(null);
-    open();
-  };
 
   const handleTabClick = (tab) => {
     setCurrentTab(tab);

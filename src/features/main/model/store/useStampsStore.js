@@ -3,8 +3,8 @@ import { STAMP_DATAS } from "../../config/stampConfig";
 import { getStamps } from "../api/stampApi";
 
 export const useStampsStore = create((set) => ({
-  stamps: [...STAMP_DATAS],
-  // stamps: ,
+  // stamps: [...STAMP_DATAS],
+  stamps: [],
   setStamps: (stamps) => set({ stamps }),
 
   // 서버에서 데이터 가져오기

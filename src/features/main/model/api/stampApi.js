@@ -27,7 +27,7 @@ export const certificateStamp = async (photoFile, id, type) => {
   const formData = new FormData();
   formData.append("saved_at", savedAt);
   formData.append("uid", uid);
-  formData.append("challenges_ids_json", JSON.stringify([id]));
+  formData.append("challenges_ids_json", JSON.stringify(id));
   formData.append("file", photoFile);
 
   try {

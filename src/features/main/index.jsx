@@ -30,7 +30,7 @@ export default function Main() {
   // Todo : 서버 연결 시 주석 해제
   useEffect(() => {
     fetchChallenges();
-    // fetchStamps();
+    fetchStamps();
   }, []);
 
   const handleStampClick = (id, type) => {

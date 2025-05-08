@@ -30,7 +30,7 @@ export const useChallengesStore = create((set) => ({
       ),
     }));
   },
-  // 챌린지 성취 횟수 추가 -> is_done: true;
+  // 챌린지 성취 횟수 추가
   addChallengeCount: (challengeId) => {
     let completedChallenge = null;
 
@@ -59,12 +59,5 @@ export const useChallengesStore = create((set) => ({
     });
 
     return completedChallenge; // 컴포넌트한테 반환
-  },
-
-  // 챌린지 성공  -> is_done: true;
-  successChallenge: (challenge) => {
-    set(() => ({
-      successChallengeItem: challenge,
-    }));
   },
 }));

@@ -10,10 +10,11 @@ import {
 import { Btn } from "../button";
 import { cn } from "@/shared/lib/utils";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loading from "../loading";
-import { useEffect } from "react";
 import { certificateStamp } from "@/features/main/model/api/stampApi";
 import { useStampsStore } from "@/features/main/model/store/useStampsStore";
+import { useChallengesStore } from "@/features/main/model/store/useChallengesStore";
 
 export default function PhotoDialog({
   isOpen,
@@ -33,6 +34,9 @@ export default function PhotoDialog({
   const inputRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const { stamps, addStamp } = useStampsStore();
+  const { addChallengeCount } = useChallengesStore();
+
+  const navigate = useNavigate();
 
   const handleTriggerFileUpload = () => {
     inputRef.current?.click(); // input 클릭 트리거
@@ -52,18 +56,32 @@ export default function PhotoDialog({
         setIsOpen(false);
         openToast();
         addStamp({
-          id: 7,
-          type: "tumbler",
-          saved_at: new Date().toISOString(), // 예시
+          id: stamps.length,
+          type: chooseChallenge.type,
+          saved_at: new Date().toISOString(),
         });
         console.log(stamps);
+
+        // 챌린지 카운트 +1
+        const completedChallenge = addChallengeCount(chooseChallenge.id);
+
+        // 목표 달성 시 성공 페이지로 이동
+        if (completedChallenge) {
+          setSuccessChallenge(completedChallenge);
+          navigate("/challenge/success"); // ← 실제 경로로 수정
+        }
       } catch (error) {
         console.error("스탬프 인증 실패:", error);
         addStamp({
           id: 7,
-          type: "tumbler",
+          type: chooseChallenge.type,
           saved_at: new Date().toISOString(), // 예시
         });
+        const completedChallenge = addChallengeCount(chooseChallenge.id);
+        if (completedChallenge) {
+          setSuccessChallenge(completedChallenge);
+          navigate("/challenge/success");
+        }
         console.log(stamps);
       } finally {
         setIsLoading(false);
